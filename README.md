@@ -42,7 +42,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false, unique: true|
-|body|text|null: false|
+|body|text||
+|image|string||
 |user_id|integer|null: false, foreign_key: true|
 |groups_id|integer|null: false, foreign_key: true|
 |created_at|timestamps||
