@@ -1,13 +1,53 @@
 .wrapper
   .chat-side
     .side-header
+      .side-header__box
+        %p.side-header__box__user-name
+          猫猫
+        %ul.side-header__box__menu
+          %li.side-header__box__menu__new-group
+            =link_to "#" do
+              = fa_icon 'edit', class: "fa fa-edit"
+          %li.side-header__box__menu__edit-user
+            =link_to "#" do
+              = fa_icon 'cog', class: "fa fa-cog"
     .groups
-      .group
-      .group
+      .view
+        = render "groups/group"
+      .view
+        = render "groups/group"
+      .view
+        = render "groups/group"
+
   .chat-main
     .main-header
-    .messages
-      .message
-    .form
+      .main-header__left-box
+        %p.main-header__left-box__current-group
+          猫グループ
+        %ul.main-header__left-box__member-list
+          Member：
+          %li.main-header__left-box__member-list__menber
+            .liplus neko
+          %li.main-header__left-box__member-list__menber.li-plus
+            tanuki
+          %li.main-header__left-box__member-list__menber.li-plus
+            saru
+      .main-header__right-box
+        =link_to "#", class: "main-header__right-box__edit btn" do
+          Edit
 
-sample
+    .messages
+      .view
+        = render "message"
+      .view
+        = render "message"
+      .view
+        = render "message"
+    .form
+      .new_message
+        .input-box
+          %input{:name => "message[content]", :placeholder => "type a message", :type => "text", :id => "message_content", :class => "input-box__text"}/
+          %label.input-box__image
+            %i.fa.fa-picture-o
+            %input.input-box__image__file{ type: "file" }
+        %input{:type => "submit", :name => "commit", :value => "Send", :class => "submit-btn" }
