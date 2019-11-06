@@ -1,3 +1,15 @@
+.notifications {
+  text-align: center;
+  color: #fff;
+
+  &notice {
+    background-color: blue;
+  }
+  &alert {
+    background-color: red;
+  }
+}
+
 .wrapper {
   a {
     text-decoration: none;

@@ -3,6 +3,8 @@
 @import "./variable";
 @import "./messages";
 @import "modules/user";
+@import "config/colors";
+@import "modules/flash";
 
 // @import "config/colors";
 // @import "config/size";
@@ -12,14 +14,4 @@
 // @import "modules/chat";
 // @import "messages/messages.scss";
 
-.flash-box {
-  color: #fff;
-  font-size: 16px;
-  font-weight: lighter;
-  text-align: center;
-  width: 100vw;
-}
 
-.notice {
-  background-color: $origin-blue;
-}
