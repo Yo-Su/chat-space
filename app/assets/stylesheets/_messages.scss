@@ -72,7 +72,7 @@
 
   padding: 0 40px;
   height: 100px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
   display: flex;
   justify-content: space-between;
   overflow: scroll;
@@ -101,11 +101,11 @@
     padding: 0 20px;
     position: absolute;
     right: 40px;
-    border: 1px solid #38aef0;
+    border: 1px solid $origin-blue;
     line-height: 40px;
     height: 38px;
     a {
-      color: #38aef0;
+      color: $origin-blue;
     }
   }
 }
@@ -130,13 +130,13 @@
     margin-bottom: 10px;
 
     &__user {
-      color: #434a54;
+      color: $origin-gray;
       font-size: 16px;
       font-weight: bold;
     }
 
     &__date {
-      color: #999999;
+      color: #999;
       font-size: 12px;
       padding-left: 10px;
     }
@@ -144,7 +144,7 @@
 
   &__text {
     font-size: 14px;
-    color: #434a54;
+    color: $origin-gray;
     padding-bottom: 10px;
   }
 }
@@ -167,7 +167,7 @@
     height: 50px;
     width: 100%;
     padding: 0 40px 0 10px;
-    color: #434a54;
+    color: $origin-gray;
     border-style: none;
     box-sizing: border-box;
   }
@@ -188,7 +188,7 @@
   height: 50px;
   padding: 0 30px;
   margin-left: 15px;
-  background-color: #38aef0;
+  background-color: $origin-blue;
   color: #fff;
   cursor: pointer;
   box-sizing: border-box;
