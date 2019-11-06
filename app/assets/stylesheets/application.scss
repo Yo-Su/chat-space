@@ -1,0 +1,16 @@
+@import "./reset";
+@import "./variable";
+@import "font-awesome";
+@import "./messages";
+
+.flash-box {
+  color: #fff;
+  font-size: 16px;
+  font-weight: lighter;
+  text-align: center;
+  width: 100vw;
+}
+
+.notice {
+  background-color: $origin-blue;
+}
