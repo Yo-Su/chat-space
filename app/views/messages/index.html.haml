@@ -48,8 +48,8 @@
     .form
       .new_message
         .input-box
-          %input{:name => "message[content]", :placeholder => "type a message", :type => "text", :id => "message_content", :class => "input-box__text"}/
+          %input{name: "message[content]", placeholder: "type a message", type: "text", id: "message_content", class: "input-box__text"}/
           %label.input-box__image
             %i.fa.fa-picture-o
             %input.input-box__image__file{ type: "file" }
-        %input{:type => "submit", :name => "commit", :value => "Send", :class => "submit-btn" }
+        %input{type: "submit", name: "commit", value: "Send", class: "submit-btn" }
