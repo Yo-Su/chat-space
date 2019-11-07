@@ -19,8 +19,7 @@
         = f.label :name, value: "チャットメンバー", class: "chat-group-form__label"
       .chat-group-form__field--right
         = f.collection_check_boxes :user_ids, @users, :id, :name
-        -# = f.collection_check_boxes :user_ids, User.all, :id, :name
-      / この部分はインクリメンタルサーチ(ユーザー追加の非同期化)のときにも使用します
+        / この部分はインクリメンタルサーチ(ユーザー追加の非同期化)のときにも使用します
     .chat-group-form__field
       .chat-group-form__field--left
       .chat-group-form__field--right
