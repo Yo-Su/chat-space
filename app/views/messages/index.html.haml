@@ -25,10 +25,11 @@
       .view
         = render "message"
     .form
-      .new_message
-        .input-box
-          %input{name: "message[content]", placeholder: "type a message", type: "text", id: "message_content", class: "input-box__text"}/
-          %label.input-box__image
-            %i.fa.fa-picture-o
-            %input.input-box__image__file{ type: "file" }
-        %input{type: "submit", name: "commit", value: "Send", class: "submit-btn" }
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: "form__message", placeholder: "type a message"
+        .form__mask
+          %label
+          = f.label :image do
+            = fa_icon 'picture-o', class: "icon"
+            = f.file_field :image, class: "hidden"
+        = f.submit 'Send', class: "form__submit"
