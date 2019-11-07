@@ -168,41 +168,38 @@
   height: 90px;
   padding: 20px 40px;
   box-sizing: border-box;
-}
-.new_message {
-  display: flex;
-}
-.input-box {
-  position: relative;
-  width: 100%;
-
-  &__text {
-    height: 50px;
-    width: 100%;
-    padding: 0 40px 0 10px;
-    color: $origin-gray;
-    border-style: none;
-    box-sizing: border-box;
+  .new_message {
+    display: flex;
   }
-  &__image {
-    font-size: 1.3rem;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-
-    &__file {
-      display: none;
+    &__message {
+      height: 50px;
+      width: 100%;
+      padding: 0 40px 0 10px;
+      color: $origin-gray;
+      border-style: none;
+      box-sizing: border-box;
     }
-  }
-}
-
-.submit-btn {
-  width: 100px;
-  height: 50px;
-  padding: 0 30px;
-  margin-left: 15px;
-  background-color: $origin-blue;
-  color: #fff;
-  cursor: pointer;
-  box-sizing: border-box;
+    &__mask {
+      background-color: #fff;
+      float: left;
+      height: 50px;
+      padding-right: 10px;
+      .icon {
+        font-size: 20px;
+        line-height: 50px;
+      }
+      .hidden {
+        display: none;
+      }
+    }
+    &__submit {
+      width: 100px;
+      height: 50px;
+      padding: 0 30px;
+      margin-left: 15px;
+      background-color: $origin-blue;
+      color: #fff;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
 }
