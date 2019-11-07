@@ -45,7 +45,7 @@
 |body|text||
 |image|string||
 |user_id|integer|null: false, foreign_key: true|
-|groups_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 |created_at|timestamps||
 
 ### Association
