@@ -4,15 +4,12 @@
     .main-header
       .main-header__left-box
         %p.main-header__left-box__current-group
-          猫グループ
+          = @group.name
         %ul.main-header__left-box__member-list
           Member：
-          %li.main-header__left-box__member-list__menber
-            .liplus neko
-          %li.main-header__left-box__member-list__menber.li-plus
-            tanuki
-          %li.main-header__left-box__member-list__menber.li-plus
-            saru
+          - @group.users.each_with_index do |user, index|
+            %li.main-header__left-box__member-list__menber.li-plus
+              = user.name
       .main-header__right-box
         =link_to "/groups/1/messages", class: "main-header__right-box__edit btn" do
           Edit
