@@ -4,32 +4,24 @@
     .main-header
       .main-header__left-box
         %p.main-header__left-box__current-group
-          猫グループ
+          = @group.name
         %ul.main-header__left-box__member-list
           Member：
-          %li.main-header__left-box__member-list__menber
-            .liplus neko
-          %li.main-header__left-box__member-list__menber.li-plus
-            tanuki
-          %li.main-header__left-box__member-list__menber.li-plus
-            saru
+          - @group.users.each_with_index do |user, index|
+            %li.main-header__left-box__member-list__menber.li-plus
+              = user.name
       .main-header__right-box
-        =link_to "/groups/1/messages", class: "main-header__right-box__edit btn" do
+        =link_to edit_group_path(@group), class: "main-header__right-box__edit btn" do
           Edit
 
     .messages
       .view
-        = render "message"
-      .view
-        = render "message"
-      .view
-        = render "message"
+        = render @messages
     .form
       = form_for [@group, @message] do |f|
-        = f.text_field :content, class: "form__message", placeholder: "type a message"
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
-          %label
-          = f.label :image do
-            = fa_icon 'picture-o', class: "icon"
-            = f.file_field :image, class: "hidden"
-        = f.submit 'Send', class: "form__submit"
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'

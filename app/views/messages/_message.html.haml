@@ -1,8 +1,10 @@
 .message
   .message__upper-info
     .message__upper-info__user
-      nekoneko
+      = message.user.name
     .message__upper-info__date
-      2019/11/03(Sun) 10:11:22
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
   .message__text
-    頑張ろう
+    - if message.content.present?
+      = message.content
+    = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
