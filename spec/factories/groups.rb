@@ -3,3 +3,4 @@ FactoryBot.define do
     name {Faker::Team.name}
   end
 end
+
