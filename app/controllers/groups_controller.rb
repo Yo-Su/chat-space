@@ -7,12 +7,10 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @group.users << current_user
-    @users = User.all
   end
 
   def create
     @group = Group.new(group_params)
-    @users = User.all
     if @group.save
       redirect_to root_path
       flash[:notice] = "グループを作成しました"
@@ -21,13 +19,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit
-    @users = User.all
-  end
-
   def update
-    @users = User.all
-
     if @group.update(group_params)
       redirect_to group_messages_path(@group)
       flash[:notice] = "グループを編集しました"
