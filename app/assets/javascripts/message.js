@@ -1,3 +1,6 @@
 $(function(){
-  console.log("OK");
+  $('#new_message').on('submit', function(e){
+    e.preventDefault();
+    console.log("OK");
+  })
 })
