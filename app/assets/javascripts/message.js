@@ -44,10 +44,11 @@ $(function(){
     .done(function(message){
       var html = buildMessage(message);
       // debugger
-      $('.messages').append(html)
+      $('.messages').append(html);
+      $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight});
+      $('form')[0].reset();
     })
     .fail(function(message){
-
     })
   })
 })
