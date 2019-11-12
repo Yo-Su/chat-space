@@ -1,13 +1,6 @@
 $(function(){
 
-  function showImage(message){
-    var image = `<div class="message__text">
-                  <img class="lower-message__image" src="/uploads/message/image/11/nekoneko.jpg" alt="Nekoneko">
-                </div>`
-    return image
-  }
   function buildMessage(message){
-    // console.log()
     var image = ""
     message.image ? image = `<img src="${message.image}">` : image = ""
     var html = `<div class="message">
@@ -43,7 +36,6 @@ $(function(){
     })
     .done(function(message){
       var html = buildMessage(message);
-      // debugger
       $('.messages').append(html);
       $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight});
       $('form')[0].reset();
@@ -52,6 +44,5 @@ $(function(){
     .fail(function(message){
       alert("メッセージ送信に失敗しました");
     })
-
   })
 })
