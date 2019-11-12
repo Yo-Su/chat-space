@@ -47,13 +47,11 @@ $(function(){
       $('.messages').append(html);
       $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight});
       $('form')[0].reset();
+      $(".form__submit").removeAttr("disabled");
     })
     .fail(function(message){
-      
+      alert("メッセージ送信に失敗しました");
     })
-    function(message){
-      $(".form__submit").removeAttr("disabled");
 
-    }
   })
 })
