@@ -49,6 +49,11 @@ $(function(){
       $('form')[0].reset();
     })
     .fail(function(message){
+      
     })
+    function(message){
+      $(".form__submit").removeAttr("disabled");
+
+    }
   })
 })
