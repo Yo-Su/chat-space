@@ -1,5 +1,5 @@
 $(function() {
-
+  // インクリメントサーチ
   var search_list = $("#user-search-result");
 
   function searchHit(user){
@@ -31,7 +31,6 @@ $(function() {
     $("#.ChatMembers").append(html);
   }
 
-
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
     $.ajax({
@@ -62,8 +61,31 @@ $(function() {
   });
 
 
-  search_list.on('click', function(e){
-    console.log("OK");
+  // インクリメントサーチ残りの実装
+  function  addUser(userName, userId){
+    var html = `
+            <div class='chat-group-user'>
+              <input name='group[user_ids][]' type='hidden' value='${userId}'>
+              <p class='chat-group-user__name'>${userName}</p>
+              <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+            </div>
+            `
+    $("#chat-group-users").append(html)
+  }
+
+  $(document).on("click", ".chat-group-user__btn--add", function() {
+    console.log(this);
+    // 追加ボタン押したとき、nameとidを取得
+    const userName = $(this).attr("data-user-name");
+    const userId = $(this).attr("data-user-id");
+      console.log(userName);
+      console.log(userId);
+
+    // 検索結果から削除
+    $(this).parent().remove()
+    addUser(userName, userId)
+    // addDeleteUser(userName, userId);
+    // addMember(userId);
   });
 
 });
