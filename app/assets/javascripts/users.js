@@ -47,7 +47,6 @@ $(function() {
           searchHit(user);
 
         })
-        console.log(users);
       } else if (input.length == 0) {
         return false;
       }
@@ -75,12 +74,9 @@ $(function() {
 
   // 追加ボタン
   $(document).on("click", ".chat-group-user__btn--add", function() {
-    console.log(this);
     // 追加ボタン押したとき、nameとidを取得
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
-      console.log(userName);
-      console.log(userId);
 
     // 検索結果から削除
     $(this).parent().remove()
@@ -89,7 +85,6 @@ $(function() {
 
   // 削除ボタン
   $(document).on("click", ".chat-group-user__btn--remove", function() {
-    console.log(this);
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
     $(this).parent().remove()
