@@ -73,6 +73,7 @@ $(function() {
     $("#chat-group-users").append(html)
   }
 
+  // 追加ボタン
   $(document).on("click", ".chat-group-user__btn--add", function() {
     console.log(this);
     // 追加ボタン押したとき、nameとidを取得
@@ -84,16 +85,14 @@ $(function() {
     // 検索結果から削除
     $(this).parent().remove()
     addUser(userName, userId)
-    // addDeleteUser(userName, userId);
-    // addMember(userId);
   });
 
+  // 削除ボタン
   $(document).on("click", ".chat-group-user__btn--remove", function() {
     console.log(this);
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
     $(this).parent().remove()
-    
   })
 
 });
