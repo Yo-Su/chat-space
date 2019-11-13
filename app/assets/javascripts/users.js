@@ -1,6 +1,6 @@
 $(function() {
 
-  var search_list = $("#chat-group-users");
+  var search_list = $("#user-search-result");
 
   function searchHit(user){
     var html = `
@@ -60,4 +60,10 @@ $(function() {
       alert("ユーザー検索に失敗しました");
     });
   });
+
+
+  search_list.on('click', function(e){
+    console.log("OK");
+  });
+
 });
