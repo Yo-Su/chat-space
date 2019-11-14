@@ -3,7 +3,7 @@ $(function(){
   function buildMessage(message){
     var image = ""
     message.image ? image = `<img src="${message.image}">` : image = ""
-    var html = `<div class="message">
+    var html = `<div class="message" data-message-id=${message.id}>
                   <div class="message__upper-info">
                     <div class="message__upper-info__user">
                       ${message.user_name}
@@ -36,7 +36,7 @@ $(function(){
     })
     .done(function(message){
       var html = buildMessage(message);
-      $('.messages').append(html);
+      $(".view").append(html);
       $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight});
       $('form')[0].reset();
       $(".form__submit").removeAttr("disabled");
@@ -47,38 +47,69 @@ $(function(){
   })
 
   // 自動更新機能の実装
+
+  var buildMessageHTML = function(message) {
+    if (message.content && message.image.url) {
+      //data-idが反映されるようにしている
+      var html = `<div class="message" data-message-id=${message.id}>
+                    <div class="message-upper-message">
+                      <div class="message__upper-info__user">
+                        ${message.user_name}
+                      </div>
+                      <div class="message__upper-info__date">
+                        ${message.time}
+                      </div>
+                    </div>
+                    <div class="message__text">
+                      ${message.content}
+
+                      <img src="${message.image.url}" class="lower-message__image">
+                    </div>
+                  </div>`
+    } else if (message.content) {
+      //同様に、data-idが反映されるようにしている
+      var html = `<div class="message" data-message-id=${message.id}>
+                    <div class="message-upper-message">
+                      <div class="message__upper-info__user">
+                        ${message.user_name}
+                      </div>
+                      <div class="message__upper-info__date">
+                        ${message.time}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <p class="lower-message__content">
+                        ${message.content}
+                      </p>
+                    </div>
+                  </div>`
+    } else if (message.image.url) {
+      //同様に、data-idが反映されるようにしている
+      var html = `<div class="message" data-message-id=${message.id}>
+                    <div class="message-upper-message">
+                      <div class="message__upper-info__user">
+                        ${message.user_name}
+                      </div>
+                      <div class="message__upper-info__date">
+                        ${message.time}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <img src="${message.image.url}" class="lower-message__image">
+                    </div>
+                  </div>`
+    };
+    return html;
+  };
+
+
   var reloadMessages = function() {
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-    // var last_message_id = $(".message").attr("data-message-id")
-    // var element = $(".view");
-    // var elementChild = $(element).children('div');
-    // var elementChildNum = $(elementChild).length;
-    // var child = elementChild[elementChildNum - 1];
-
     last_message_id = $($(".view").children()[$(".view").children().length - 1]).attr("data-message-id");
-    console.log(last_message_id);
-    // console.log(data);
-    // console.log(elementChildNum);
-    // console.log($(child).attr("data-message-id"));
-    // var last_message_id = $(".message").data("message-id")
-    // console.log(last_message_id)
-    // function searchId(message){
-    //   console.log(message.id)
-    // }
-    // searchId(group)
-
-    // var aaa = $(document).attr("data-message-id")
-    // debugger
-    // $(document).on("click", ".message", function(){
-    //   var usid = $(this).attr("data-message-id");
-    //   console.log(usid);
-    // })
     // console.log(last_message_id);
-    // console.log(location.href)
-    // var httpId = location.href.match(/\/(\d+)/)
     var httpId = location.href.match(new RegExp(/\/(\d+)/))[1]
-    console.log(`/groups/${httpId}/api/messages`);
-
+    var http = `/groups/${httpId}/api/messages`
+    // console.log(http);
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
       url: `/groups/${httpId}/api/messages`,
@@ -89,11 +120,29 @@ $(function(){
       data: {id: last_message_id}
     })
     .done(function(messages) {
-      console.log('success');
+      // console.log('success');
+      //追加するHTMLの入れ物を作る
+      var insertHTML = '';
+      
+      //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+      // console.log(message);
+      messages.forEach(function(newMessage){
+        insertHTML += buildMessageHTML(newMessage);
+        console.log(newMessage)
+      });
+      //メッセージが入ったHTMLを取得
+      $(".messages").on('click', function(e){
+        console.log(messages);
+        // console.log(insertHTML);
+      })
+      //メッセージを追加
+      $(".view").append(insertHTML)
+      
     })
     .fail(function() {
       console.log('error');
     });
   };
-  reloadMessages();
+  setInterval(reloadMessages, 7000);
+  // reloadMessages();
 })
