@@ -2,7 +2,7 @@ $(function(){
 
   function buildMessage(message){
     var image = ""
-    message.image ? image = `<img src="${message.image}">` : image = ""
+    message.image_url ? image = `<img src="${message.image_url}">` : image = ""
     var html = `<div class="message" data-message-id=${message.id}>
                   <div class="message__upper-info">
                     <div class="message__upper-info__user">
@@ -49,56 +49,31 @@ $(function(){
   // 自動更新機能の実装
 
   var buildMessageHTML = function(message) {
-    if (message.content && message.image.url) {
-      //data-idが反映されるようにしている
-      var html = `<div class="message" data-message-id=${message.id}>
-                    <div class="message-upper-message">
-                      <div class="message__upper-info__user">
-                        ${message.user_name}
-                      </div>
-                      <div class="message__upper-info__date">
-                        ${message.time}
-                      </div>
+    var image = ""
+    // message.image_url ? console.log("OK") : console.log("NG");
+    message.image.url ? image = `<img src="${message.image.url}">` : image = ""
+    // console.log(message.image);
+    // console.log(message.image.url);
+    // console.log(message.image_url);
+    // console.log(image);
+    
+    // console.log(message.image);
+    var html = `<div class="message" data-message-id=${message.id}>
+                  <div class="message__upper-info">
+                    <div class="message__upper-info__user">
+                      ${message.user_name}
                     </div>
+                    <div class="message__upper-info__date">
+                      ${message.created_at}
+                    </div>
+                  </div>
+                  <div class="message__text">
+                    ${message.content}
                     <div class="message__text">
-                      ${message.content}
-
-                      <img src="${message.image.url}" class="lower-message__image">
+                      ${image}
                     </div>
-                  </div>`
-    } else if (message.content) {
-      //同様に、data-idが反映されるようにしている
-      var html = `<div class="message" data-message-id=${message.id}>
-                    <div class="message-upper-message">
-                      <div class="message__upper-info__user">
-                        ${message.user_name}
-                      </div>
-                      <div class="message__upper-info__date">
-                        ${message.time}
-                      </div>
-                    </div>
-                    <div class="lower-message">
-                      <p class="lower-message__content">
-                        ${message.content}
-                      </p>
-                    </div>
-                  </div>`
-    } else if (message.image.url) {
-      //同様に、data-idが反映されるようにしている
-      var html = `<div class="message" data-message-id=${message.id}>
-                    <div class="message-upper-message">
-                      <div class="message__upper-info__user">
-                        ${message.user_name}
-                      </div>
-                      <div class="message__upper-info__date">
-                        ${message.time}
-                      </div>
-                    </div>
-                    <div class="lower-message">
-                      <img src="${message.image.url}" class="lower-message__image">
-                    </div>
-                  </div>`
-    };
+                  </div>
+                </div>`
     return html;
   };
 
@@ -126,18 +101,21 @@ $(function(){
       
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
       // console.log(message);
+      var pageCount = 0;
       messages.forEach(function(newMessage){
+        var countHTML = insertHTML
         insertHTML += buildMessageHTML(newMessage);
-        console.log(newMessage)
+        pageCount = 1;
+
       });
       //メッセージが入ったHTMLを取得
-      $(".messages").on('click', function(e){
-        console.log(messages);
-        // console.log(insertHTML);
-      })
+
       //メッセージを追加
       $(".view").append(insertHTML)
-      
+      if (pageCount === 1){
+        $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight});
+        pageCount = 0;
+      }
     })
     .fail(function() {
       console.log('error');
