@@ -74,9 +74,10 @@ $(function(){
 
   var reloadMessages = function() {
     last_message_id = $($(".view").children()[$(".view").children().length - 1]).attr("data-message-id");
-    console.log(last_message_id);
     var httpId = location.href.match(new RegExp(/\/(\d+)/))[1]
     var http = `/groups/${httpId}/api/messages`
+    console.log(httpId);
+    console.log(http);
     $.ajax({
       url: `/groups/${httpId}/api/messages`,
       type: 'get',
@@ -84,6 +85,7 @@ $(function(){
       data: {id: last_message_id}
     })
     .done(function(messages) {
+      console.log(messages);
       var insertHTML = '';
       var pageCount = 0;
       messages.forEach(function(newMessage){
