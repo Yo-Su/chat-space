@@ -74,7 +74,7 @@ $(function(){
 
   var reloadMessages = function() {
     last_message_id = $($(".view").children()[$(".view").children().length - 1]).attr("data-message-id");
-    var httpId = location.href.match(new RegExp(/\/(\d+)/))[1]
+    var httpId = location.href.match(new RegExp(/groups\/(\d+)/))[1]
     var http = `/groups/${httpId}/api/messages`
     console.log(httpId);
     console.log(http);
