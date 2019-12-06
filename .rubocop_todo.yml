@@ -31,11 +31,11 @@ Layout/ArgumentAlignment:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: around, only_before
-Layout/EmptyLinesAroundAccessModifier:
-  Exclude:
-    - 'app/controllers/groups_controller.rb'
-    - 'app/controllers/messages_controller.rb'
-    - 'app/controllers/users_controller.rb'
+# Layout/EmptyLinesAroundAccessModifier:
+#   Exclude:
+#     - 'app/controllers/groups_controller.rb'
+#     - 'app/controllers/messages_controller.rb'
+#     - 'app/controllers/users_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
