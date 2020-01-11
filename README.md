@@ -41,7 +41,7 @@
 
 # 📊 chat-spaceデータベース設計
 
-<img src="https://user-images.githubusercontent.com/57243991/72131172-d47d3680-33be-11ea-9e39-4930ccad54a8.png" width=900px>
+<img src="https://user-images.githubusercontent.com/57243991/72205954-07612080-34cc-11ea-8b58-adc10078a886.png" width=900px>
 
 ## usersテーブル
 |Column|Type|Options|
